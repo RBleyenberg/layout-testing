@@ -1,0 +1,32 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.dare-toolbar {
+  height: 52px;
+}
+
+.dare-sidemenu-container > button {
+  width: 80%;
+  text-align: left;
+  padding-left: 2em;
+}
+
+.dare-sidemenu-container {
+  align-items: flex-start;
+}
+

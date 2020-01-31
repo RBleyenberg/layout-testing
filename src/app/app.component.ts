@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
+import { Observable } from 'rxjs';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +12,16 @@ import { AppConfig } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    public electronService: ElectronService,
-    private translate: TranslateService
-  ) {
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
+
+  
+  constructor(private breakpointObserver: BreakpointObserver, public electronService: ElectronService, private translate: TranslateService) {
+
     translate.setDefaultLang('en');
     console.log('AppConfig', AppConfig);
 
@@ -24,5 +33,6 @@ export class AppComponent {
     } else {
       console.log('Mode web');
     }
+
   }
 }
